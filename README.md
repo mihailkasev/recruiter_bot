@@ -15,7 +15,7 @@
 - Подключить телеграм бота через BotFather(https://t.me/BotFather) и получить Token.
 - Клонировать репозиторий:
 ```
-git clone https://github.com/mihailkasev/php_trainee
+git clone https://github.com/mihailkasev/recruiter_bot
 ```
 - В папке infra создать файл с переменными окружения .env и заполнить данными:
 TELEGRAM_TOKEN = <Полученный токен телеграм бота>
