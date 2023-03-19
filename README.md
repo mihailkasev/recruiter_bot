@@ -12,7 +12,7 @@
 - pymongo 4.3.3
 
 ### Запуск проекта
-- Подключить телеграм бота через [!BotFather](https://t.me/BotFather) и получить Token.
+- Подключить телеграм бота через [BotFather](https://t.me/BotFather) и получить Token.
 - Клонировать репозиторий:
 ```
 git clone https://github.com/mihailkasev/recruiter_bot
