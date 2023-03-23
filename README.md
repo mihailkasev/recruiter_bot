@@ -9,7 +9,7 @@
 - Python 3.9.10
 - python-telegram-bot 20.1
 - python-dotenv 1.0.0
-- pymongo 4.3.3
+- motor 3.1.1
 
 ### Запуск проекта
 - Подключить telegram бота через [BotFather](https://t.me/BotFather) и получить Token.
