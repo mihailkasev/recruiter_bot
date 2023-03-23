@@ -29,7 +29,7 @@ QUESTION_LIST: list = [city, age, position, experience]
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Начинает разговор с пользователем и спрашивает ФИО."""
     message = update.message
-    user = db.get_user(message.chat_id)
+    user = await db.get_user(message.chat_id)
     if user["is_passed"]:
         await message.reply_text(
             static_text.cannot_repeat.format(
@@ -50,10 +50,10 @@ async def ask_question(
 ) -> int:
     """Задает вопрос из списка вопросов и переходит к следующему."""
     message = update.message
-    user = db.get_user(message.chat_id)
+    user = await db.get_user(message.chat_id)
     answer = message.text
 
-    db.set_user(
+    await db.set_user(
         message.chat_id,
         {QUESTION_KEYS[user["question_id"]]: answer})
 
@@ -67,7 +67,7 @@ async def ask_question(
             static_text.new_candidate.format(
                 user=user["ФИО"]))
 
-        db.set_user(
+        await db.set_user(
             message.chat_id,
             {"is_passed": True,
                 "created_at": datetime.now().strftime("%d.%m.%y")})
@@ -82,7 +82,7 @@ async def ask_question(
         question[0],
         reply_markup=question[1]
     )
-    db.set_user(
+    await db.set_user(
         message.chat_id,
         {"question_id": user["question_id"] + 1}
     )
@@ -99,6 +99,6 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         static_text.conversation_cancel,
         reply_markup=ReplyKeyboardRemove()
     )
-    db.users.delete_one({"chat_id": update.message.chat_id})
+    await db.users.delete_one({"chat_id": update.message.chat_id})
 
     return ConversationHandler.END

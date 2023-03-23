@@ -27,7 +27,7 @@ async def send_error_message(
     и направляет сообщения пользователю и админу."""
     logger.error(error, exc_info=context.error)
 
-    user = db.get_user(update.message.chat_id)
+    user = await db.get_user(update.message.chat_id)
 
     tb_list = traceback.format_exception(
         None, context.error, context.error.__traceback__)
